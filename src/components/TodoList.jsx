@@ -1,7 +1,7 @@
 import { TodoCard } from "./TodoCard";
 
 export function TodoList({ todos }) {
-    const tab = "Open";
+    const tab = "All";
     const filterTodosList =
         tab === "All"
             ? todos
