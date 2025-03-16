@@ -1,3 +1,15 @@
 export function TodoCard({ todo }) {
-  return <h3 className="">{todo.input}</h3>;
+    return (
+        <div className="card todo-item">
+            <p>{todo.input}</p>
+            <div className="todo-buttons">
+                <button disabled={todo.complete}>
+                    <h6>Done</h6>
+                </button>
+                <button>
+                    <h6>Delete</h6>
+                </button>
+            </div>
+        </div>
+    );
 }
