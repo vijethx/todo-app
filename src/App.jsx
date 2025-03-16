@@ -13,16 +13,16 @@ function App() {
   ];
 
   const totalTasks = todos.length;
-  let openTasksCount = 0;
-  let completedTasksCount = 0;
+  let openTasksCount = todos.filter(i => !i.complete).length;
+  let completedTasksCount = todos.filter(i => i.complete).length;
 
-  for (let i = 0; i < totalTasks; i++) {
-    if (todos[i].complete == false) {
-      openTasksCount++;
-    }
-  }
+  // for (let i = 0; i < totalTasks; i++) {
+  //   if (todos[i].complete == false) {
+  //     openTasksCount++;
+  //   }
+  // }
 
-  completedTasksCount = totalTasks - openTasksCount;
+  // completedTasksCount = totalTasks - openTasksCount;
 
   return (
     <>
