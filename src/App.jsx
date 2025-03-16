@@ -6,13 +6,6 @@ import { Footer } from "./components/Footer";
 import { useState, useEffect } from "react";
 
 function App() {
-    // const todos = [
-    //   { input: "Lorem ipsum dolor sit amet.", complete: true },
-    //   { input: "Eaque tempore, voluptatibus.", complete: false },
-    //   { input: "Amet consectetur adipisicing elit.", complete: false },
-    //   { input: "Iusto est rerum nulla libero.", complete: true },
-    // ];
-
     const [todos, setTodos] = useState([
         { input: "Add your first task.", complete: false },
     ]);

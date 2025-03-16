@@ -18,7 +18,9 @@ export function TodoList({
             {filterTodosList.map((todo, todoIndex) => (
                 <TodoCard
                     key={todoIndex}
-                    todoIndex={todoIndex}
+                    todoIndex={todos.findIndex(
+                        (val) => val.input == todo.input
+                    )} // look for index in the original todos array
                     todo={todo}
                     handleCompleteTodo={handleCompleteTodo}
                     handleDeleteTodo={handleDeleteTodo}
