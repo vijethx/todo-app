@@ -3,7 +3,7 @@ import { Tabs } from "./components/Tabs";
 import { TodoList } from "./components/TodoList";
 import { TodoInput } from "./components/TodoInput";
 import { Footer } from "./components/Footer";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
     // const todos = [
@@ -22,17 +22,18 @@ function App() {
     function handleAddTodo(newTodo) {
         const newTodoList = [...todos, { input: newTodo, complete: false }];
         setTodos(newTodoList);
+        handleSaveData(newTodoList);
     }
     function handleCompleteTodo(index) {
         // onclicking the Done button
-        let newTodoList = [...todos];
-        let completedTodo = todos[index];
+        let newTodoList = [...todos]; // created a duplicate list of todos
+        let completedTodo = todos[index]; // accessing the completed task
 
-        completedTodo["complete"] = true;
-        newTodoList[index] = completedTodo;
+        completedTodo["complete"] = true; // set the completed status to true
+        newTodoList[index] = completedTodo; // rewrite the task w/ the new status in the list of todos
 
-        setTodos(newTodoList);
-
+        setTodos(newTodoList); // set todos
+        handleSaveData(newTodoList);
         alert("Task completed");
     }
 
@@ -41,6 +42,7 @@ function App() {
             return valIndex !== index;
         });
         setTodos(newTodoList);
+        handleSaveData(newTodoList);
         alert("Task deleted successfully");
     }
 
@@ -48,14 +50,16 @@ function App() {
     let openTasksCount = todos.filter((i) => !i.complete).length;
     let completedTasksCount = todos.filter((i) => i.complete).length;
 
-    // for (let i = 0; i < totalTasks; i++) {
-    //   if (todos[i].complete == false) {
-    //     openTasksCount++;
-    //   }
-    // }
+    function handleSaveData(currTodos) {
+        localStorage.setItem("todo-app", JSON.stringify({ todos: currTodos }));
+    }
 
     // completedTasksCount = totalTasks - openTasksCount;
-
+    useEffect(() => {
+        if (!localStorage || !localStorage.getItem("todo-app")) return;
+        let db = JSON.parse(localStorage.getItem("todo-app"));
+        setTodos(db.todos);
+    }, []);
     return (
         <>
             <Header openTasksCount={openTasksCount} />
