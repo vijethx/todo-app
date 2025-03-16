@@ -1,11 +1,11 @@
 import { TodoCard } from "./TodoCard";
 
-export function TodoList({ todos }) {
-    const tab = "All";
+export function TodoList({ todos,selectedTab }) {
+    // const tab = "All";
     const filterTodosList =
-        tab === "All"
+        selectedTab === "All"
             ? todos
-            : tab === "Completed"
+            : selectedTab === "Completed"
             ? todos.filter((i) => i.complete)
             : todos.filter((i) => !i.complete);
     return (
