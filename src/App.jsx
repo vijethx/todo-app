@@ -23,8 +23,26 @@ function App() {
         const newTodoList = [...todos, { input: newTodo, complete: false }];
         setTodos(newTodoList);
     }
-    function handleEditTodo() {}
-    function handleDeleteTodo() {}
+    function handleCompleteTodo(index) {
+        // onclicking the Done button
+        let newTodoList = [...todos];
+        let completedTodo = todos[index];
+
+        completedTodo["complete"] = true;
+        newTodoList[index] = completedTodo;
+
+        setTodos(newTodoList);
+
+        alert("Task completed");
+    }
+
+    function handleDeleteTodo(index) {
+        let newTodoList = todos.filter((val, valIndex) => {
+            return valIndex !== index;
+        });
+        setTodos(newTodoList);
+        alert("Task deleted successfully");
+    }
 
     const totalTasks = todos.length;
     let openTasksCount = todos.filter((i) => !i.complete).length;
@@ -51,7 +69,7 @@ function App() {
             <TodoList
                 todos={todos}
                 selectedTab={selectedTab}
-                handleEditTodo={handleEditTodo}
+                handleCompleteTodo={handleCompleteTodo}
                 handleDeleteTodo={handleDeleteTodo}
             />
             <TodoInput handleAddTodo={handleAddTodo} />
